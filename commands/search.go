@@ -15,7 +15,7 @@ func SearchPassword(service string) {
 	passwords, err := storage.LoadPasswords()
 
 	if err != nil {
-		fmt.Println("failed to load passwords: ", err)
+		fmt.Println("Failed to load passwords: ", err)
 		return
 	}
 
