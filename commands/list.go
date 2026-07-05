@@ -9,7 +9,7 @@ func ListPasswords() {
 	passwords, err := storage.LoadPasswords()
 
 	if err != nil {
-		fmt.Println("Errro loading passwords: ", err)
+		fmt.Println("Error loading passwords: ", err)
 		return 
 	}
 

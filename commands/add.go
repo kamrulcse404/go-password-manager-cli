@@ -5,6 +5,7 @@ import (
 	"passwordmanagercli/models"
 	"passwordmanagercli/storage"
 	"passwordmanagercli/util"
+	"strings"
 )
 
 func AddPassword(service, userNameOrEmail, password string) {
@@ -18,6 +19,13 @@ func AddPassword(service, userNameOrEmail, password string) {
 	if err != nil {
 		fmt.Println("Error loading passwords!", err)
 		return
+	}
+
+	for _, password := range passwords {
+		if strings.ToLower(password.Service) == strings.ToLower(service) {
+			fmt.Println("Service already exists!")
+			return
+		}
 	}
 
 	newPassword := models.Password{
