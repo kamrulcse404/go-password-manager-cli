@@ -25,14 +25,18 @@ func SearchPassword(service string) {
 	}
 
 	found := false
+	fmt.Printf("%-5s %-15s %-20s %-30s\n", "ID", "Service", "Username", "Password")
+	fmt.Println("------------------------------------------------------")
 
 	for _, password := range passwords {
 		if strings.EqualFold(password.Service, service) {
 			found = true
-			fmt.Printf("ID      : %d\n", password.ID)
-			fmt.Printf("Service : %s\n", password.Service)
-			fmt.Printf("Username: %s\n", password.Username)
-			fmt.Printf("Password: %s\n", password.Password)
+			fmt.Printf("%-5d %-15s %-20s %-30s\n",
+				password.ID,
+				password.Service,
+				password.Username,
+				password.Password,
+			)
 		}
 	}
 
