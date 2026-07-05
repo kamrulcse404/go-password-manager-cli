@@ -33,6 +33,16 @@ func main() {
 	case "list":
 		commands.ListPasswords()
 
+	case "search":
+		if len(os.Args) != 3 {
+			fmt.Println("Please provide service name")
+			util.PrintUsage()
+			return
+		}
+
+		service := os.Args[2]
+		commands.SearchPassword(service)
+
 	default:
 		fmt.Println("Unknown command.")
 		util.PrintUsage()
