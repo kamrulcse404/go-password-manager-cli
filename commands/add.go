@@ -22,8 +22,8 @@ func AddPassword(service, userNameOrEmail, password string) {
 	}
 
 	for _, password := range passwords {
-		if strings.ToLower(password.Service) == strings.ToLower(service) {
-			fmt.Println("Service already exists!")
+		if (strings.ToLower(password.Service) == strings.ToLower(service)) && (strings.ToLower(password.Username) == strings.ToLower(userNameOrEmail)) {
+			fmt.Println("Service already exists with same username!")
 			return
 		}
 	}

@@ -20,7 +20,7 @@ func SearchPassword(service string) {
 	}
 
 	if len(passwords) == 0 {
-		fmt.Println("Passwords not found.")
+		fmt.Println("No passwords found.")
 		return
 	}
 
