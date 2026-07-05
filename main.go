@@ -77,6 +77,9 @@ func main() {
 
 		commands.UpdatePassword(id, newPassword)
 
+	case "stats":
+		commands.Stats()
+
 	default:
 		fmt.Println("Unknown command.")
 		util.PrintUsage()
