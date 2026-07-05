@@ -12,7 +12,15 @@ const (
 )
 
 func LoadPasswords() ([]models.Password, error) {
-	err := os.MkdirAll(dataDir, 0755)
+	_, err := os.Stat(dataDir)
+	if os.IsNotExist(err) {
+		err = os.MkdirAll(dataDir, 0755)
+		if err != nil {
+			return nil, err
+		}
+		return createPasswordFile()
+	}
+
 	if err != nil {
 		return nil, err
 	}
@@ -20,11 +28,7 @@ func LoadPasswords() ([]models.Password, error) {
 	data, err := os.ReadFile(passwordFilePath)
 
 	if os.IsNotExist(err) {
-		err = os.WriteFile(passwordFilePath, []byte("[]"), 0644)
-		if err != nil {
-			return nil, err
-		}
-		return []models.Password{}, nil
+		return createPasswordFile()
 	}
 
 	if err != nil {
