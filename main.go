@@ -60,6 +60,23 @@ func main() {
 
 		commands.RemovePassword(id)
 
+	case "update":
+		if len(os.Args) < 4 {
+			fmt.Println("Please provide ID & new password")
+			util.PrintUsage()
+			return
+		}
+
+		id, err := strconv.Atoi(os.Args[2])
+		if err != nil {
+			fmt.Println("Invalid ID. Please enter a valid number.")
+			return
+		}
+
+		newPassword := os.Args[3]
+
+		commands.UpdatePassword(id, newPassword)
+
 	default:
 		fmt.Println("Unknown command.")
 		util.PrintUsage()

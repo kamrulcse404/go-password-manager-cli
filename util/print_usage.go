@@ -10,4 +10,5 @@ func PrintUsage() {
 	fmt.Println("  list                                 List all saved accounts")
 	fmt.Println("  search <service>                     Search by service")
 	fmt.Println("  remove <id>                          Remove a password")
+	fmt.Println("  update <id> <password>               Update a password")
 }
