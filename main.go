@@ -30,6 +30,9 @@ func main() {
 
 		commands.AddPassword(service, username, password)
 
+	case "list":
+		commands.ListPasswords()
+
 	default:
 		fmt.Println("Unknown command.")
 		util.PrintUsage()

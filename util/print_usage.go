@@ -7,4 +7,5 @@ func PrintUsage() {
 	fmt.Println()
 	fmt.Println("Usage:")
 	fmt.Println("  add <service> <username> <password>   Add a new password")
+	fmt.Println("  list                                 List all saved accounts")
 }
