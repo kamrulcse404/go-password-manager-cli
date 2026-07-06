@@ -7,9 +7,18 @@ import (
 	"passwordmanagercli/util"
 	"strconv"
 	"strings"
+
+	"github.com/joho/godotenv"
 )
 
 func main() {
+
+	err := godotenv.Load()
+	if err != nil {
+		fmt.Println("Error loading .env file:", err)
+		return
+	}
+
 	if len(os.Args) < 2 {
 		util.PrintUsage()
 		return
