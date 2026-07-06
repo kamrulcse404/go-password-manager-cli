@@ -2,6 +2,7 @@ package commands
 
 import (
 	"fmt"
+	"passwordmanagercli/crypto"
 	"passwordmanagercli/models"
 	"passwordmanagercli/storage"
 	"passwordmanagercli/util"
@@ -28,11 +29,17 @@ func AddPassword(service, userNameOrEmail, password string) {
 		}
 	}
 
+	encryptedPassword, err := crypto.Encrypt(password)
+	if err != nil {
+		fmt.Println("Failed to encrypt password:", err)
+		return
+	}
+
 	newPassword := models.Password{
 		ID:       util.GetNextID(passwords),
 		Service:  service,
 		Username: userNameOrEmail,
-		Password: password,
+		Password: encryptedPassword,
 	}
 
 	passwords = append(passwords, newPassword)

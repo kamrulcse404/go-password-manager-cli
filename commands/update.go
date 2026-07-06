@@ -3,6 +3,7 @@ package commands
 import (
 	"fmt"
 	"passwordmanagercli/storage"
+	"passwordmanagercli/crypto"
 )
 
 func UpdatePassword(id int, newPassword string) {
@@ -23,9 +24,15 @@ func UpdatePassword(id int, newPassword string) {
 		return
 	}
 
+	encryptedPassword, err := crypto.Encrypt(newPassword)
+	if err != nil {
+		fmt.Println("Failed to encrypt password:", err)
+		return
+	}
+
 	for idx := range passwords {
 		if  passwords[idx].ID == id {
-			passwords[idx].Password = newPassword
+			passwords[idx].Password = encryptedPassword
 
 			err = storage.SavePasswords(passwords)
 

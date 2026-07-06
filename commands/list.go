@@ -2,6 +2,7 @@ package commands
 
 import (
 	"fmt"
+	"passwordmanagercli/crypto"
 	"passwordmanagercli/storage"
 )
 
@@ -10,7 +11,7 @@ func ListPasswords() {
 
 	if err != nil {
 		fmt.Println("Error loading passwords: ", err)
-		return 
+		return
 	}
 
 	if len(passwords) == 0 {
@@ -18,14 +19,20 @@ func ListPasswords() {
 		return
 	}
 
-	fmt.Printf("%-5s %-15s %-20s\n", "ID", "Service", "Username")
-	fmt.Println("------------------------------------------")
+	fmt.Printf("%-5s %-15s %-20s %-30s\n", "ID", "Service", "Username", "Password")
+	fmt.Println("-------------------------------------------------------------------")
 
 	for _, password := range passwords {
-		fmt.Printf("%-5d %-15s %-20s\n",
+		decryptedText, err := crypto.Decrypt(password.Password)
+		if err != nil {
+			fmt.Println("Failed to decrypt password:", err)
+			return
+		}
+		fmt.Printf("%-5d %-15s %-20s %-30s\n",
 			password.ID,
 			password.Service,
 			password.Username,
+			decryptedText,
 		)
 	}
 }

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"passwordmanagercli/storage"
 	"strings"
+	"passwordmanagercli/crypto"
 )
 
 func SearchPassword(service string) {
@@ -30,12 +31,17 @@ func SearchPassword(service string) {
 
 	for _, password := range passwords {
 		if strings.EqualFold(password.Service, service) {
+			decryptedText, err := crypto.Decrypt(password.Password)
+			if err != nil {
+				fmt.Println("Failed to decrypt password:", err)
+				return
+			}
 			found = true
 			fmt.Printf("%-5d %-15s %-20s %-30s\n",
 				password.ID,
 				password.Service,
 				password.Username,
-				password.Password,
+				decryptedText,
 			)
 		}
 	}
