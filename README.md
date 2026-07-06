@@ -78,7 +78,7 @@ passwordmanagercli/
 ├── storage/           # File operations
 ├── util/              # Helper functions
 │
-├── .env.example       # Example environment variables
+├
 ├── .gitignore
 ├── go.mod
 ├── go.sum
