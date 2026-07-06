@@ -3,13 +3,15 @@ package util
 import "fmt"
 
 func PrintUsage() {
+	fmt.Println()
 	fmt.Println("Password Manager CLI")
 	fmt.Println()
 	fmt.Println("Usage:")
-	fmt.Println("  add <service> <username> <password>   Add a new password")
+	fmt.Println("  add <service> <username> <password>  Add a new password")
 	fmt.Println("  list                                 List all saved accounts")
 	fmt.Println("  search <service>                     Search by service")
 	fmt.Println("  remove <id>                          Remove a password")
 	fmt.Println("  update <id> <password>               Update a password")
 	fmt.Println("  stats                                Show password statistics")
+	fmt.Println("  generate <length>                    Generate a strong password")
 }

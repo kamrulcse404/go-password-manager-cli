@@ -80,6 +80,21 @@ func main() {
 	case "stats":
 		commands.Stats()
 
+	case "generate":
+		if len(os.Args) < 3 {
+			fmt.Println("Please provide password length")
+			util.PrintUsage()
+			return
+		}
+
+		len, err := strconv.Atoi(os.Args[2])
+		if err != nil {
+			fmt.Println("Invalid number. Please enter a valid number [range(1-70)]")
+			return
+		}
+
+		commands.GeneratePassword(len)
+
 	default:
 		fmt.Println("Unknown command.")
 		util.PrintUsage()
